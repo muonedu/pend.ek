@@ -1,0 +1,65 @@
+<html>
+<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+
+<style type="text/css">
+  body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+input[type="text"] {
+    font-size:22px
+}
+
+.navbar {
+  margin-bottom: 20px;
+  background-color: #0da6e5;
+}
+</style>
+
+<body>
+      <div class="container">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="color: #fff;" href="#">pend.ek</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+<form class="form-inline" required="true" action="/app" method="POST">
+    <div class="form-group">
+      <div class="input-group">
+          <input  class="form-control" placeholder="enter your url here" type="text" style="width:100%;" required="true" name="text" style="font-size: 30px;">
+          <span class="input-group-btn"><button class="btn btn-default btn-success" type="submit">send</button>
+           <h3><a target="_blank" href={{data}}>{{data}}</a></h3>
+          </span>
+
+        </div>
+      </div>
+      <br>
+     
+    </div>
+   
+</form>
+</body>
+
+<script type="application/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script type="application/javascript" src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+</html>
