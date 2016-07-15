@@ -1,12 +1,9 @@
+<!DOCTYPE html>
 <html>
-<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 <head>
-	<title>pendek.in</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
-  	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
-
-</head>
-
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+	
 <style type="text/css">
   /* Sticky footer styles
 -------------------------------------------------- */
@@ -44,26 +41,25 @@ body {
 </head>
 
 <body>
+
     <div class="container">
-      <form class="form-inline" required="true" action="http://localhost:1212/" method="post">
-    	<div class="form-group">
-      	<div class="input-group">
-        <input  class="form-control" placeholder="tempel url disini, lalu tekan enter" type="text" style="width:100%; height: 50px; width: 650px; top: 280px;" required="true" name="text"></input>
+      <form class="form-inline" required="true" action="http://localhost:1212/app" method="post">
+    <div class="form-group">
+      <div class="input-group">
+          <input  class="form-control" placeholder="tempel URL disini, lalu tekan enter" type="text" style="width:100%; height: 50px; width: 650px; top: 280px;" required="true" name="text"></input>
         </div>
       </div>
+    
       </div>
-    </form>
-   </div>
 
-   <div class="container">
-   	<a href="{{data}}">{{data}}</a>
-   </div>
-
+</form>
+    
+    </div>
 <footer class="footer">
   <div class="container">
     <p class="text-center">
     pendekin is an experimental link shortener. further reading, see
-    <a target="_blank" href="/docs">docs</a>
+    <a href="/docs">docs</a>
   </p>
   </div>
 </footer>

@@ -4,49 +4,48 @@
 from flask import Flask
 from flask import render_template
 from flask import redirect
-from flask import request 
-from base64 import b64encode
+from flask import request
 from os import getenv
+import random
+import string
 
 urls = {}
 app = Flask(__name__)
 
 port = int(getenv("PORT", 1212))
 
-def GetUrl(shortedUrl):
-    if shortedUrl:
-        return urls.getvalue(shortedUrl)
+def get_url(shortedUrl):
+    return urls.getvalue(shortedUrl)
 
-def ShortenUrl(url):
-    if url:
-        port = str(getenv("PORT", 1212))
-        urls[b64encode(url)] = url 
-        return "http://localhost:{}/{}".format(port, b64encode(url))
-    return False
+def generate_id(url):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits+string.lowercase) for _ in range(5))
+
+def url_shortener(url):
+    path = generate_id(url)
+    urls[path] = url
+    return "http://localhost:{}/{}".format(port, path)
 
 @app.route("/")
-def IndexPage():
-    return render_template("index.html")
+def index_page():
+    return render_template('index.html')
 
-@app.route("/app", methods=["GET", "POST"])
-def Main():
-    url = request.form['text']
-    if url:
-        shortenurl = ShortenUrl(url)
-        return render_template("app.html", data=shortenurl, url=url)
-
-@app.route("/urls")
-def ShowUrls():
-    return render_template("urls.html", data=urls)
+@app.route("/", methods=["GET", "POST"])
+def main():
+    if request.form['text']:
+        shorted_url = url_shortener(request.form['text'])
+        return render_template("index.html", data=shorted_url)
+    else:
+        return render_template('index.html')
 
 @app.route("/<shortedUrl>")
-def Redirect(shortedUrl):
+def redirect_url(shortedUrl):
     if shortedUrl:
-        url = urls.get(shortedUrl)  
+        url = urls.get(shortedUrl)
         if url:
             return redirect(url.encode('ascii'), 301)
+        else:
+            return redirect("/", 200)    
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="localhost", port=int(getenv("PORT", 1212)), threaded=True
-            )
+    app.run(host="0.0.0.0", port=port, threaded=True)
