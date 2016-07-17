@@ -6,6 +6,7 @@ from flask import render_template
 from flask import redirect
 from flask import request
 from os import getenv
+from flask import url_for
 import random
 import string
 
@@ -44,7 +45,7 @@ def redirect_url(shortedUrl):
         if url:
             return redirect(url.encode('ascii'), 301)
         else:
-            return redirect("/", 200)    
+            return redirect(url_for('index_page'), 301)    
 
 if __name__ == "__main__":
     app.debug = True
