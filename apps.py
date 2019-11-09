@@ -15,7 +15,7 @@ def get_url(shortedUrl):
     return urls.getvalue(shortedUrl)
 
 def generate_id(url):
-    return ''.join(random.choice(string.ascii_uppercase + string.digits+string.lowercase) for _ in range(5))
+    return ''.join(random.choice(string.ascii_uppercase + string.digits+string.ascii_lowercase) for _ in range(5))
 
 def url_shortener(url):
     path = generate_id(url)
