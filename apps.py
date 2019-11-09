@@ -1,19 +1,15 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from flask import Flask
-from flask import render_template
-from flask import redirect
-from flask import request
+from flask import Flask, render_template, redirect, request, url_for
 from os import getenv
-from flask import url_for
 import random
 import string
 
-urls = {}
 app = Flask(__name__)
-
 port = int(getenv("PORT", 1212))
+
+urls = {}
 
 def get_url(shortedUrl):
     return urls.getvalue(shortedUrl)
